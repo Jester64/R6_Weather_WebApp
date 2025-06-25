@@ -1,13 +1,15 @@
-🌤 Weather Forecast Web App (Laravel + React)
+Weather Forecast Web App (Laravel + React)
 
 This application displays a 5-day weather forecast for selected Australian cities using the AccuWeather API. It’s built with a Laravel backend and a React + Vite frontend.
 
 
-⚙️ Setup Instructions
+Setup Instructions
 
 1. Install PHP, Laravel, and Composer
 
 go to https://laravel.com/docs/12.x/installation#installing-php and follow the install steps
+
+OR
 
 Make sure PHP 8.1+ is installed. You can download it from php.net or install it via:
 
@@ -55,8 +57,14 @@ React + Vite Frontend: React handles the dynamic UI, using useEffect and useStat
 
 Laravel API: An endpoint at /api/forecast?city=CityName fetches and returns clean JSON data formatted for the frontend.
 
-Tailwind CSS: Provides clean styling with utility classes for layout, spacing, and responsiveness.
-
 Fallback States: Includes UI handling for loading, errors, and no data conditions.
 
-AccuWeather API: Offers accurate 5-day forecasts, accessed via a custom Laravel AccuWeatherService class.
+AccuWeather API: Offers accurate 5-day forecasts, accessed via a custom Laravel AccuWeatherService class, and is free to use.
+
+Daily Report: Task Brief intro mentions daily generated report, but no details and expectations in Success Critiera:
+    
+Created app\Console\Commands\GenerateDailyForecastReport.php to gather forecast data that day from Brisbane, Gold Coast, and Sunshine Coast that genrates a txt file in app\storage\app\reports e.g. 
+    
+    app\storage\app\reports\weather_report_2025-06-16.txt
+
+Tailwind CSS: Provides clean styling with utility classes for layout, spacing, and responsiveness.
