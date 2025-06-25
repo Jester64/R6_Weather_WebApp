@@ -26,48 +26,56 @@ const WeatherApp = () => {
     }, [city]);
 
     return (
-        <div className="p-4 font-sans">
-            <h1 className="text-2xl mb-4">5-Day Weather Forecast</h1>
-            <select
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                className="mb-4 p-2 border"
-            >
-                <option value="Brisbane">Brisbane</option>
-                <option value="Sydney">Sydney</option>
-                <option value="Melbourne">Melbourne</option>
-                <option value="Sunshine Coast">Sunshine Coast</option>
-            </select>
+        <div className="Main">
+            <h1 className="Title_Header">5-Day Weather Forecast</h1>
 
-            {loading && <p>Loading...</p>}
-            {error && <p className="text-red-500">{error}</p>}
+            <div className="Select_City">
+                <label htmlFor="city" className="Select_City_Label">Select City:</label>
+                <select
+                    id="city"
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    className="Select_Tool"
+                >
+                    <option value="Brisbane">Brisbane</option>
+                    <option value="GoldCoast">Gold Coast</option>
+                    <option value="Maroochydore">Sunshine Coast</option>
+                </select>
+            </div>
 
-            {forecast.length > 0 && (
-                <table className="table-auto border-collapse w-full">
-                    <thead>
-                        <tr>
-                            <th className="border p-2">Day</th>
-                            <th className="border p-2">Min Temp</th>
-                            <th className="border p-2">Max Temp</th>
-                            <th className="border p-2">Summary</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {forecast.map((day, index) => (
-                            <tr key={index}>
-                                <td className="border p-2">{day.day}</td>
-                                <td className="border p-2">{day.min_temp}°C</td>
-                                <td className="border p-2">{day.max_temp}°C</td>
-                                <td className="border p-2">{day.summary}</td>
+            {loading && <p className="Loading_Notification">Loading forecast...</p>}
+            {error && <p className="Error_Notification">{error}</p>}
+
+            {!loading && forecast.length > 0 && (
+                <div className="Main_Table_Container">
+                    <table className="Main_Table">
+                        <thead className="Main_Table_Head">
+                            <tr>
+                                <th className="Main_Table_Head_Day">Day</th>
+                                <th className="Main_Table_Head_Min_Temp">Min Temp</th>
+                                <th className="Main_Table_Head_Max_Temp">Max Temp</th>
+                                <th className="Main_Table_Head_Summary">Summary</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {forecast.map((day, index) => (
+                                <tr key={index} className="Main_Table_Row">
+                                    <td className="Main_Table_Row_Day">{day.day}</td>
+                                    <td className="Main_Table_Row_Min_Temp">{day.min_temp}°C</td>
+                                    <td className="Main_Table_Row_Max_Temp">{day.max_temp}°C</td>
+                                    <td className="Main_Table_Row_Summary">{day.summary}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            )}
+
+            {!loading && forecast.length === 0 && !error && (
+                <p className="Forecast_Retrieve_Fail">No forecast data available.</p>
             )}
         </div>
     );
 };
 
 export default WeatherApp;
-
-
