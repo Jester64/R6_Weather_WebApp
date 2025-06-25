@@ -1,11 +1,11 @@
-Weather Forecast Web App (Laravel + React)
+<h1/>Weather Forecast Web App (Laravel + React)</h1>
 
 This application displays a 5-day weather forecast for selected Australian cities using the AccuWeather API. It’s built with a Laravel backend and a React + Vite frontend.
 
 
-Setup Instructions
+<h2/>Setup Instructions</h2>
 
-1. Install PHP, Laravel, and Composer
+<h3/>1. Install PHP, Laravel, and Composer</h3>
 
 go to https://laravel.com/docs/12.x/installation#installing-php and follow the install steps
 
@@ -19,19 +19,19 @@ Make sure PHP 8.1+ is installed. You can download it from php.net or install it 
 
     Linux: sudo apt install php
 
-2. Clone the repo and install Laravel dependencies:
+<h3/>2. Clone the repo and install Laravel dependencies:</h3>
 
 composer:
 
     composer install    
 
-3. Set your API Key
+<h3/>3. Set your API Key</h3>
 
 Open .env and add your AccuWeather API key:
 
     ACCUWEATHER_API_KEY=your_api_key_here
 
-4. Start the dev server
+<h3/>4. Start the dev server</h3>
 
 Use the following command to run both the Laravel server and frontend together:
 
@@ -43,28 +43,50 @@ This starts:
 
     Vite dev server (React) at: http://localhost:5173/ (used under the hood)
 
-5. Access the App
+<h3/>5. Access the App</h3>
 
 Visit:
 
 http://127.0.0.1:8000/
 
+<h3/>6. Forecast Artisan Command</h3>
+
+use php artisan forecast {cities?*} to view forecast data in comand prompt:
+
+    php artisan forecast Brisbane
+
+    OR
+
+    php artisan forecast Brisbane ColdCoast Maroochydore
+
+ <h3/>7. How To Use the Website</h3>
+
 Use the dropdown to select a city and view the forecast.
 
-Design Choices
+<h2/>Design Choices</h2>
 
-React + Vite Frontend: React handles the dynamic UI, using useEffect and useState to manage city selection and loading state.
+<h3/>React + Vite Frontend:</h3> 
+React handles the dynamic UI, using useEffect and useState to manage city selection and loading state.
 
-Laravel API: An endpoint at /api/forecast?city=CityName fetches and returns clean JSON data formatted for the frontend.
+<h3/>Weather Info Display:</h3>
+Shows one city's weather data at a time for readability. Added Weather conditions to display to show more relevent data to user.
 
-Fallback States: Includes UI handling for loading, errors, and no data conditions.
+<h3/>Laravel API:</h3>
+An endpoint at /api/forecast?city=CityName fetches and returns clean JSON data formatted for the frontend.
 
-AccuWeather API: Offers accurate 5-day forecasts, accessed via a custom Laravel AccuWeatherService class, and is free to use.
+<h3/>Fallback States:</h3>
+Includes UI handling for loading, errors, and no data conditions.
 
-Daily Report: Task Brief intro mentions daily generated report, but no details and expectations in Success Critiera:
-    
-Created app\Console\Commands\GenerateDailyForecastReport.php to gather forecast data that day from Brisbane, Gold Coast, and Sunshine Coast that genrates a txt file in app\storage\app\reports e.g. 
+<h3/>AccuWeather API:</h3> 
+Offers accurate 5-day forecasts, accessed via a custom Laravel AccuWeatherService class, and is free to use.
+
+<h3/>Daily Report:</h3> 
+Task Brief intro mentions daily generated report, but no details and expectations in Success Critiera:
+
+Created app\Console\Commands\GenerateDailyForecastReport.php to gather forecast data that day from Brisbane, Gold Coast, and Sunshine Coast that genrates a .txt file in app\storage\app\reports e.g. 
     
     app\storage\app\reports\weather_report_2025-06-16.txt
 
-Tailwind CSS: Provides clean styling with utility classes for layout, spacing, and responsiveness.
+Command example in app\Console\Commands\kernal.php:
+
+    app:forecast-report Brisbane GoldCoast Maroochydore
