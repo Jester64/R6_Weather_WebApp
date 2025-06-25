@@ -33,7 +33,7 @@ Open .env and add your AccuWeather API key:
 
 <h3/>4. Start the dev server</h3>
 
-Use the following command to run both the Laravel server and frontend together:
+Open cmd and go to File project location. Use the following command to run both the Laravel server and frontend together:
 
     composer run dev
 
